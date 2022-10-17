@@ -1,0 +1,67 @@
+<div id="search-component" class="col-md-12">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <label for="search-box">Option:</label>
+      <select class="form-control" [(ngModel)]="employeeSearch.dataOption">
+        <option value="any">any</option>
+        <option value="all">all</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-row" *ngFor="let searchCriteria of searchCriteria">
+    <div class="form-group col-md-2">
+      <label for="search-criteria">Criteria:</label>
+      <select class="form-control" [(ngModel)]="searchCriteria.filterKey">
+        <option value="name">Name</option>
+        <option value="surname">Surname</option>
+        <option value="salary">Salary</option>
+        <option value="grade">Grade</option>
+      </select>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="search-operation">Operation</label>
+      <select class="form-control" [(ngModel)]="searchCriteria.operation">
+        <option value="cn">contains</option>
+        <option value="nc">does not contain</option>
+        <option value="eq">equal</option>
+        <option value="ne">not equal</option>
+        <option value="bw">begins with</option>
+        <option value="bn">does not begin with</option>
+        <option value="ew">ends with</option>
+        <option value="en">does not end with</option>
+        <option value="nu">null</option>
+        <option value="nn">not null</option>
+        <option value="gt">greater then</option>
+        <option value="ge">greater then equal</option>
+        <option value="lt">less then</option>
+        <option value="le">less then equal</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="search-value">Value</label>
+      <input class="form-control" [(ngModel)]="searchCriteria.value" />
+    </div>
+    <div class="form-group row col-md-1">
+      <button class="btn btn-primary btn-sm" (click)="addRow()">Add</button>
+      <button class="btn btn-danger btn-sm" (click)="removeRow(searchCriteria)">
+        Remove
+      </button>
+    </div>
+  </div>
+  <hr />
+  <div class="form-row">
+    <label for="search-value"></label>
+    <button class="btn btn-primary" (click)="search()">Search</button>
+  </div>
+  <hr />
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let employee of employees">
+      {{ employee.name }} {{ employee.surname }}
+      <a
+        class="btn btn-success btn-sm float-right"
+        routerLink="/detail/{{ employee.id }}"
+        >edit
+      </a>
+    </li>
+  </ul>
+</div>

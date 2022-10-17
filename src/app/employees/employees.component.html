@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <h1>Search for Employees</h1>
+  <div><a class="btn btn-primary" routerLink="/new">New Employee</a></div>
+  <app-employee-search></app-employee-search>
+</div>
+<br />
+<div>
+  <div class="col-md-12">
+    <h1>All Available Empoloyees</h1>
+    <ul class="list-group list-group-flush col-md-12">
+      <li class="list-group-item" *ngFor="let employee of employees">
+        <span>{{ employee.id }}</span> {{ employee.name }}
+        {{ employee.surname }} <span>{{ employee.salary }}$</span>
+        <a
+          class="btn btn-success btn-sm float-right"
+          routerLink="/detail/{{ employee.id }}"
+          >edit
+        </a>
+        <button
+          type="button"
+          class="btn btn-danger btn-sm float-right"
+          title="delete employee"
+          (click)="delete(employee)"
+        >
+          delete
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>
